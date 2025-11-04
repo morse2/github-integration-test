@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Spring Boot Test Suite" parallel="methods" thread-count="5">
+    <test name="Spring Boot Tests">
+        <packages>
+            <package name="com.tuogo.cicd"/>
+        </packages>
+    </test>
+</suite>
