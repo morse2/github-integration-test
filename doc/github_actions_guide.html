@@ -767,29 +767,32 @@ pre.rouge {
 <div id="toc" class="toc2">
 <div id="toctitle">目录</div>
 <ul class="sectlevel1">
-<li><a href="#_我们的项目">1. 我们的项目</a></li>
-<li><a href="#_fedex_cicd_选型">2. FedEx CI/CD 选型</a>
+<li><a href="#_fedex_cicd_选型">1. FedEx CI/CD 选型</a>
 <ul class="sectlevel2">
-<li><a href="#_为什么选择_github_actions">2.1. 为什么选择 GitHub Actions</a></li>
-<li><a href="#_github_actions_与_jenkins_比较">2.2. GitHub Actions 与 Jenkins 比较</a></li>
-<li><a href="#_增加集成测试">2.3. 增加集成测试</a></li>
+<li><a href="#_为什么选择_github_actions">1.1. 为什么选择 GitHub Actions</a></li>
+<li><a href="#_github_actions_与_jenkins_比较">1.2. GitHub Actions 与 Jenkins 比较</a></li>
 </ul>
 </li>
-<li><a href="#_github_actions_简介">3. GitHub Actions 简介</a></li>
-<li><a href="#_github_actions_fedex_cicd_流程">4. GitHub Actions &amp; FedEx CI/CD 流程</a></li>
-<li><a href="#_github_actions_核心概念">5. GitHub Actions 核心概念</a>
+<li><a href="#_github_actions_简介">2. GitHub Actions 简介</a></li>
+<li><a href="#_github_actions_fedex_cicd_流程">3. GitHub Actions &amp; FedEx CI/CD 流程</a></li>
+<li><a href="#_github_actions_核心概念">4. GitHub Actions 核心概念</a>
 <ul class="sectlevel2">
-<li><a href="#_工作流_workflow">5.1. 工作流 (Workflow)</a></li>
-<li><a href="#_事件_event">5.2. 事件 (Event)</a></li>
-<li><a href="#_作业_job">5.3. 作业 (Job)</a></li>
-<li><a href="#_步骤_step">5.4. 步骤 (Step)</a></li>
-<li><a href="#_操作_action">5.5. 操作 (Action)</a></li>
-<li><a href="#_运行器_runner">5.6. 运行器 (Runner)</a></li>
+<li><a href="#_工作流_workflow">4.1. 工作流 (Workflow)</a></li>
+<li><a href="#_事件_event">4.2. 事件 (Event)</a></li>
+<li><a href="#_作业_job">4.3. 作业 (Job)</a></li>
+<li><a href="#_步骤_step">4.4. 步骤 (Step)</a></li>
+<li><a href="#_操作_action">4.5. 操作 (Action)</a></li>
+<li><a href="#_运行器_runner">4.6. 运行器 (Runner)</a></li>
 </ul>
 </li>
-<li><a href="#_配置_self_hosted_runner">6. 配置 Self-hosted Runner</a></li>
-<li><a href="#_workflow_配置示例">7. Workflow 配置示例</a></li>
-<li><a href="#_github_actions_实践">8. GitHub Actions 实践</a></li>
+<li><a href="#_配置_self_hosted_runner">5. 配置 Self-hosted Runner</a></li>
+<li><a href="#_workflow_配置示例">6. Workflow 配置示例</a></li>
+<li><a href="#_github_actions_实践">7. GitHub Actions 实践</a></li>
+<li><a href="#_我们的项目">8. 我们的项目</a>
+<ul class="sectlevel2">
+<li><a href="#_增加集成测试项目">8.1. 增加集成测试项目</a></li>
+</ul>
+</li>
 <li><a href="#_总结">9. 总结</a></li>
 <li><a href="#_参考资源">10. 参考资源</a></li>
 </ul>
@@ -797,37 +800,10 @@ pre.rouge {
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_我们的项目"><a class="anchor" href="#_我们的项目"></a>1. 我们的项目</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>我们是基于 Spring Boot 开发的项目结构，并且使用 Maven 进行构建管理，可以快速地执行 CI/CD 构建过程，在开发环境中，使用了 Gitlab 提供的 CI/CD 工具进行开发环境的自动化测试和部署。我们目前主要用到的是单元测试，在打包时候，进行核心功能的测试，测试通过后，才会进行打包发布。</p>
-</div>
-<div class="paragraph">
-<p><strong>我们用到的Java版本和框架如下：</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Java 17</p>
-</li>
-<li>
-<p>Spring Boot 3.x</p>
-</li>
-<li>
-<p>Maven 3.8+</p>
-</li>
-<li>
-<p>Junit 5</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_fedex_cicd_选型"><a class="anchor" href="#_fedex_cicd_选型"></a>2. FedEx CI/CD 选型</h2>
+<h2 id="_fedex_cicd_选型"><a class="anchor" href="#_fedex_cicd_选型"></a>1. FedEx CI/CD 选型</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_为什么选择_github_actions"><a class="anchor" href="#_为什么选择_github_actions"></a>2.1. 为什么选择 GitHub Actions</h3>
+<h3 id="_为什么选择_github_actions"><a class="anchor" href="#_为什么选择_github_actions"></a>1.1. 为什么选择 GitHub Actions</h3>
 <div class="paragraph">
 <p>目前使用比较多的CI/CD工具有：Jenkins、Gitlab CI/CD、GitHub Actions等。 我们选择 GitHub Actions 作为我们的持续集成和持续部署（CI/CD）工具，主要基于以下几个原因：</p>
 </div>
@@ -849,7 +825,7 @@ pre.rouge {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_github_actions_与_jenkins_比较"><a class="anchor" href="#_github_actions_与_jenkins_比较"></a>2.2. GitHub Actions 与 Jenkins 比较</h3>
+<h3 id="_github_actions_与_jenkins_比较"><a class="anchor" href="#_github_actions_与_jenkins_比较"></a>1.2. GitHub Actions 与 Jenkins 比较</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 27.2727%;">
@@ -922,55 +898,10 @@ pre.rouge {
 </tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="_增加集成测试"><a class="anchor" href="#_增加集成测试"></a>2.3. 增加集成测试</h3>
-<div class="paragraph">
-<p>对于Java项目，我们除了使用 Junit 单元测试外，还引入 TestNG 进行集成测试。</p>
-</div>
-<div class="paragraph">
-<p>目前的单元测试可以保证核心功能的正确性，但在多个系统之间的功能协同和集成方面，单元测试的覆盖面有限。通过引入集成测试，我们可以模拟真实的使用场景，验证各个组件之间的交互是否符合预期，从而提高系统的可靠性。</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>全面的测试支持，可以完整地验证系统功能</p>
-</li>
-<li>
-<p>模拟真实环境，确保各个组件协同工作正常</p>
-</li>
-<li>
-<p>回归测试，确保修改不会破坏现有功能</p>
-</li>
-<li>
-<p>并行执行，提高测试效率，缩短执行时间</p>
-</li>
-<li>
-<p>提供更高的测试覆盖率</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>下面是一个集成测试样例：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@Test</span><span class="o">(</span><span class="n">description</span> <span class="o">=</span> <span class="s">"Personal Keywords Remote API Test"</span><span class="o">,</span>
-        <span class="n">suiteName</span> <span class="o">=</span> <span class="s">"Jet Api Integration Test"</span><span class="o">,</span> <span class="n">priority</span> <span class="o">=</span> <span class="mi">1</span><span class="o">)</span>
-<span class="kt">void</span> <span class="nf">remoteApiTest</span><span class="o">()</span> <span class="o">{</span>
-    <span class="nc">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">"https://newtg.natapp4.cc/midjetapi/personal-keywords/list?keyword=123&amp;page=1&amp;size=10"</span><span class="o">;</span>
-    <span class="nc">RequestEntity</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">&gt;</span> <span class="n">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RequestEntity</span><span class="o">&lt;&gt;(</span><span class="nc">HttpMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">,</span> <span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">url</span><span class="o">));</span>
-    <span class="nc">ParameterizedTypeReference</span><span class="o">&lt;</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;&gt;</span> <span class="n">responseType</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ParameterizedTypeReference</span><span class="o">&lt;&gt;()</span> <span class="o">{};</span>
-    <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="n">restTemplate</span><span class="o">.</span><span class="na">exchange</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">responseType</span><span class="o">);</span>
-    <span class="n">assertNotNull</span><span class="o">(</span><span class="n">response</span><span class="o">);</span>
-    <span class="n">assertNotNull</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getBody</span><span class="o">());</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_github_actions_简介"><a class="anchor" href="#_github_actions_简介"></a>3. GitHub Actions 简介</h2>
+<h2 id="_github_actions_简介"><a class="anchor" href="#_github_actions_简介"></a>2. GitHub Actions 简介</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>GitHub Actions 是 GitHub 提供的持续集成/持续部署(CI/CD)平台，它直接集成在 GitHub 仓库中。通过 GitHub Actions，开发团队可以自动化他们的软件开发工作流程，包括构建、测试、打包、发布和部署代码。</p>
@@ -978,7 +909,7 @@ pre.rouge {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_github_actions_fedex_cicd_流程"><a class="anchor" href="#_github_actions_fedex_cicd_流程"></a>4. GitHub Actions &amp; FedEx CI/CD 流程</h2>
+<h2 id="_github_actions_fedex_cicd_流程"><a class="anchor" href="#_github_actions_fedex_cicd_流程"></a>3. GitHub Actions &amp; FedEx CI/CD 流程</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
@@ -988,10 +919,10 @@ pre.rouge {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_github_actions_核心概念"><a class="anchor" href="#_github_actions_核心概念"></a>5. GitHub Actions 核心概念</h2>
+<h2 id="_github_actions_核心概念"><a class="anchor" href="#_github_actions_核心概念"></a>4. GitHub Actions 核心概念</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_工作流_workflow"><a class="anchor" href="#_工作流_workflow"></a>5.1. 工作流 (Workflow)</h3>
+<h3 id="_工作流_workflow"><a class="anchor" href="#_工作流_workflow"></a>4.1. 工作流 (Workflow)</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1007,7 +938,7 @@ pre.rouge {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_事件_event"><a class="anchor" href="#_事件_event"></a>5.2. 事件 (Event)</h3>
+<h3 id="_事件_event"><a class="anchor" href="#_事件_event"></a>4.2. 事件 (Event)</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1035,7 +966,7 @@ pre.rouge {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_作业_job"><a class="anchor" href="#_作业_job"></a>5.3. 作业 (Job)</h3>
+<h3 id="_作业_job"><a class="anchor" href="#_作业_job"></a>4.3. 作业 (Job)</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1051,7 +982,7 @@ pre.rouge {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_步骤_step"><a class="anchor" href="#_步骤_step"></a>5.4. 步骤 (Step)</h3>
+<h3 id="_步骤_step"><a class="anchor" href="#_步骤_step"></a>4.4. 步骤 (Step)</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1067,7 +998,7 @@ pre.rouge {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_操作_action"><a class="anchor" href="#_操作_action"></a>5.5. 操作 (Action)</h3>
+<h3 id="_操作_action"><a class="anchor" href="#_操作_action"></a>4.5. 操作 (Action)</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1089,7 +1020,7 @@ pre.rouge {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_运行器_runner"><a class="anchor" href="#_运行器_runner"></a>5.6. 运行器 (Runner)</h3>
+<h3 id="_运行器_runner"><a class="anchor" href="#_运行器_runner"></a>4.6. 运行器 (Runner)</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1113,7 +1044,7 @@ pre.rouge {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_配置_self_hosted_runner"><a class="anchor" href="#_配置_self_hosted_runner"></a>6. 配置 Self-hosted Runner</h2>
+<h2 id="_配置_self_hosted_runner"><a class="anchor" href="#_配置_self_hosted_runner"></a>5. 配置 Self-hosted Runner</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>由于GitHub actions 默认是运行在托管服务器上的，由于安全原因，是无法直接访问内网资源的，所以在这个时候，我们需要配置自托管运行器（Self-hosted Runner），将运行器部署在可以访问内网资源的环境中。</p>
@@ -1153,7 +1084,7 @@ pre.rouge {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_workflow_配置示例"><a class="anchor" href="#_workflow_配置示例"></a>7. Workflow 配置示例</h2>
+<h2 id="_workflow_配置示例"><a class="anchor" href="#_workflow_配置示例"></a>6. Workflow 配置示例</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Workflow 配置文件使用 YAML 格式，以下是一个样例文件：</p>
@@ -1230,7 +1161,7 @@ pre.rouge {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_github_actions_实践"><a class="anchor" href="#_github_actions_实践"></a>8. GitHub Actions 实践</h2>
+<h2 id="_github_actions_实践"><a class="anchor" href="#_github_actions_实践"></a>7. GitHub Actions 实践</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -1281,6 +1212,88 @@ pre.rouge {
 </div>
 </div>
 <div class="sect1">
+<h2 id="_我们的项目"><a class="anchor" href="#_我们的项目"></a>8. 我们的项目</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>我们是基于 Spring Boot 开发的项目结构，并且使用 Maven 进行构建管理，可以快速地执行 CI/CD 构建过程，在开发环境中，使用了 Gitlab 提供的 CI/CD 工具进行开发环境的自动化测试和部署。我们目前主要用到的是单元测试，在打包时候，进行核心功能的测试，测试通过后，才会进行打包发布。</p>
+</div>
+<div class="paragraph">
+<p><strong>我们用到的Java版本和框架如下：</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Java 17</p>
+</li>
+<li>
+<p>Spring Boot 3.x</p>
+</li>
+<li>
+<p>Maven 3.8+</p>
+</li>
+<li>
+<p>Junit 5</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>开发环境发布工具：</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Gitlab CI/CD</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_增加集成测试项目"><a class="anchor" href="#_增加集成测试项目"></a>8.1. 增加集成测试项目</h3>
+<div class="paragraph">
+<p>对于Java项目，我们除了使用 Junit 单元测试外，还引入 TestNG 进行集成测试。</p>
+</div>
+<div class="paragraph">
+<p>目前的单元测试可以保证核心功能的正确性，但在多个系统之间的功能协同和集成方面，单元测试的覆盖面有限。通过引入集成测试，我们可以模拟真实的使用场景，验证各个组件之间的交互是否符合预期，从而提高系统的可靠性。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>全面的测试支持，可以完整地验证系统功能</p>
+</li>
+<li>
+<p>模拟真实环境，确保各个组件协同工作正常</p>
+</li>
+<li>
+<p>回归测试，确保修改不会破坏现有功能</p>
+</li>
+<li>
+<p>并行执行，提高测试效率，缩短执行时间</p>
+</li>
+<li>
+<p>提供更高的测试覆盖率</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>下面是一个集成测试样例：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nd">@Test</span><span class="o">(</span><span class="n">description</span> <span class="o">=</span> <span class="s">"Personal Keywords Remote API Test"</span><span class="o">,</span>
+        <span class="n">suiteName</span> <span class="o">=</span> <span class="s">"Jet Api Integration Test"</span><span class="o">,</span> <span class="n">priority</span> <span class="o">=</span> <span class="mi">1</span><span class="o">)</span>
+<span class="kt">void</span> <span class="nf">remoteApiTest</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">"https://newtg.natapp4.cc/midjetapi/personal-keywords/list?keyword=123&amp;page=1&amp;size=10"</span><span class="o">;</span>
+    <span class="nc">RequestEntity</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">&gt;</span> <span class="n">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RequestEntity</span><span class="o">&lt;&gt;(</span><span class="nc">HttpMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">,</span> <span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">url</span><span class="o">));</span>
+    <span class="nc">ParameterizedTypeReference</span><span class="o">&lt;</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;&gt;</span> <span class="n">responseType</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ParameterizedTypeReference</span><span class="o">&lt;&gt;()</span> <span class="o">{};</span>
+    <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="n">restTemplate</span><span class="o">.</span><span class="na">exchange</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">responseType</span><span class="o">);</span>
+    <span class="n">assertNotNull</span><span class="o">(</span><span class="n">response</span><span class="o">);</span>
+    <span class="n">assertNotNull</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getBody</span><span class="o">());</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_总结"><a class="anchor" href="#_总结"></a>9. 总结</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -1318,7 +1331,7 @@ pre.rouge {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-11-04 16:52:23 +0800
+Last updated 2025-11-05 13:48:44 +0800
 </div>
 </div>
 <script>

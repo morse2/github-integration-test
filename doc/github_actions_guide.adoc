@@ -8,17 +8,6 @@
 :source-highlighter: rouge
 :listing-caption: 代码示例
 
-== 我们的项目
-
-我们是基于 Spring Boot 开发的项目结构，并且使用 Maven 进行构建管理，可以快速地执行 CI/CD 构建过程，在开发环境中，使用了 Gitlab 提供的 CI/CD 工具进行开发环境的自动化测试和部署。我们目前主要用到的是单元测试，在打包时候，进行核心功能的测试，测试通过后，才会进行打包发布。
-
-*我们用到的Java版本和框架如下：*
-
-- Java 17
-- Spring Boot 3.x
-- Maven 3.8+
-- Junit 5
-
 == FedEx CI/CD 选型
 
 === 为什么选择 GitHub Actions
@@ -67,35 +56,6 @@
 | GitHub企业版支持，文档完善
 | 专业支持服务可通过CloudBees获取，社区支持强大
 |===
-
-=== 增加集成测试
-
-对于Java项目，我们除了使用 Junit 单元测试外，还引入 TestNG 进行集成测试。
-
-目前的单元测试可以保证核心功能的正确性，但在多个系统之间的功能协同和集成方面，单元测试的覆盖面有限。通过引入集成测试，我们可以模拟真实的使用场景，验证各个组件之间的交互是否符合预期，从而提高系统的可靠性。
-
-- 全面的测试支持，可以完整地验证系统功能
-- 模拟真实环境，确保各个组件协同工作正常
-- 回归测试，确保修改不会破坏现有功能
-- 并行执行，提高测试效率，缩短执行时间
-- 提供更高的测试覆盖率
-
-下面是一个集成测试样例：
-
-[source,java]
-----
-@Test(description = "Personal Keywords Remote API Test",
-        suiteName = "Jet Api Integration Test", priority = 1)
-void remoteApiTest() {
-    String url = "https://newtg.natapp4.cc/midjetapi/personal-keywords/list?keyword=123&page=1&size=10";
-    RequestEntity<Object> request = new RequestEntity<>(HttpMethod.GET, URI.create(url));
-    ParameterizedTypeReference<Map<String, Object>> responseType = new ParameterizedTypeReference<>() {};
-    ResponseEntity<Map<String, Object>> response = restTemplate.exchange(request, responseType);
-    assertNotNull(response);
-    assertNotNull(response.getBody());
-}
-----
-
 
 == GitHub Actions 简介
 
@@ -263,6 +223,51 @@ image::github_actions_sample-3.png[GitHub Actions 步骤日志示意图, width=9
 
 [image,png]
 image::github_actions_sample-4.png[GitHub Actions 构建产物下载示意图, width=90%]
+
+== 我们的项目
+
+我们是基于 Spring Boot 开发的项目结构，并且使用 Maven 进行构建管理，可以快速地执行 CI/CD 构建过程，在开发环境中，使用了 Gitlab 提供的 CI/CD 工具进行开发环境的自动化测试和部署。我们目前主要用到的是单元测试，在打包时候，进行核心功能的测试，测试通过后，才会进行打包发布。
+
+*我们用到的Java版本和框架如下：*
+
+- Java 17
+- Spring Boot 3.x
+- Maven 3.8+
+- Junit 5
+
+*开发环境发布工具：*
+
+- Gitlab CI/CD
+
+
+=== 增加集成测试项目
+
+对于Java项目，我们除了使用 Junit 单元测试外，还引入 TestNG 进行集成测试。
+
+目前的单元测试可以保证核心功能的正确性，但在多个系统之间的功能协同和集成方面，单元测试的覆盖面有限。通过引入集成测试，我们可以模拟真实的使用场景，验证各个组件之间的交互是否符合预期，从而提高系统的可靠性。
+
+- 全面的测试支持，可以完整地验证系统功能
+- 模拟真实环境，确保各个组件协同工作正常
+- 回归测试，确保修改不会破坏现有功能
+- 并行执行，提高测试效率，缩短执行时间
+- 提供更高的测试覆盖率
+
+下面是一个集成测试样例：
+
+[source,java]
+----
+@Test(description = "Personal Keywords Remote API Test",
+        suiteName = "Jet Api Integration Test", priority = 1)
+void remoteApiTest() {
+    String url = "https://newtg.natapp4.cc/midjetapi/personal-keywords/list?keyword=123&page=1&size=10";
+    RequestEntity<Object> request = new RequestEntity<>(HttpMethod.GET, URI.create(url));
+    ParameterizedTypeReference<Map<String, Object>> responseType = new ParameterizedTypeReference<>() {};
+    ResponseEntity<Map<String, Object>> response = restTemplate.exchange(request, responseType);
+    assertNotNull(response);
+    assertNotNull(response.getBody());
+}
+----
+
 
 
 == 总结
