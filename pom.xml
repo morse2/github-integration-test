@@ -80,6 +80,10 @@
 			<version>7.8.0</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -107,6 +111,17 @@
                     </suiteXmlFiles>
                     <!-- 跳过默认的 JUnit 测试 -->
                     <skipTests>false</skipTests>
+                    <!-- 配置测试报告 -->
+                    <properties>
+                        <property>
+                            <name>usedefaultlisteners</name>
+                            <value>true</value>
+                        </property>
+                        <property>
+                            <name>listener</name>
+                            <value>com.tuogo.cicd.CustomTestListener</value>
+                        </property>
+                    </properties>
                 </configuration>
             </plugin>
 		</plugins>

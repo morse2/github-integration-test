@@ -1,6 +1,12 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="Spring Boot Test Suite" parallel="methods" thread-count="5">
-    <test name="Spring Boot Tests">
+    
+    <!-- 配置监听器 -->
+    <listeners>
+        <listener class-name="com.tuogo.cicd.CustomTestListener" />
+    </listeners>
+    
+    <test name="Spring Boot Tests" preserve-order="true">
         <packages>
             <package name="com.tuogo.cicd"/>
         </packages>

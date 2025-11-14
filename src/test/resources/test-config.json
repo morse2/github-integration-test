@@ -1,0 +1,53 @@
+{
+  "testName": "通用接口测试套件",
+  "description": "通过JSON配置定义测试顺序的通用测试套件",
+  "baseUrl": "https://newtg.natapp4.cc",
+  "tests": [
+    {
+      "name": "测试1: 获取个人关键词列表",
+      "method": "GET",
+      "url": "/midjetapi/personal-keywords/list",
+      "parameters": {
+        "keyword": "123",
+        "page": "1",
+        "size": "10"
+      },
+      "expectedStatus": 200,
+      "extract": {
+        "total": "$.data.total",
+        "firstKeyword": "$.data.records[0].keyword"
+      },
+      "nextTestCondition": "always"
+    },
+    {
+      "name": "测试2: 根据关键词ID获取详情",
+      "method": "GET", 
+      "url": "/midjetapi/personal-keywords/detail",
+      "parameters": {
+        "id": "${firstKeyword}"
+      },
+      "expectedStatus": 200,
+      "extract": {
+        "keywordDetail": "$.data.keyword"
+      },
+      "nextTestCondition": "success"
+    },
+    {
+      "name": "测试3: 创建新的关键词",
+      "method": "POST",
+      "url": "/midjetapi/personal-keywords/create",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "keyword": "test_keyword_${timestamp}",
+        "description": "测试创建的关键词"
+      },
+      "expectedStatus": 200,
+      "extract": {
+        "newKeywordId": "$.data.id"
+      },
+      "nextTestCondition": "success"
+    }
+  ]
+}
